@@ -15,9 +15,10 @@ function soma() {
   var somaMinutos = Number(minutoUm) + Number(minutoDois);
 
   while (somaMinutos >= 60) {
-    somaMinutos == somaMinutos-60;
-    somaHoras == somaHoras+ 1;
+    somaMinutos = somaMinutos-60;
+    somaHoras = somaHoras + 1;
   }
+
   console.log(somaHoras);
   console.log(somaMinutos);
 }
@@ -25,12 +26,18 @@ function soma() {
 function subtrai() {
   const horaUm = document.getElementById("h1").value;
   const horaDois = document.getElementById("h2").value;
-  const diminuiHoras = Number(horaUm) - Number(horaDois);
-  console.log(diminuiHoras);
+  var diminuiHoras = Number(horaUm) - Number(horaDois);
 
   const minutoUm = document.getElementById("m1").value;
   const minutoDois = document.getElementById("m2").value;
-  const diminuiMinutos = Number(minutoUm) - Number(minutoDois);
+  var diminuiMinutos = Number(minutoUm) - Number(minutoDois);
+
+  while (diminuiMinutos >= 60) {
+    diminuiMinutos = diminuiMinutos-60;
+    diminuiHoras = diminuiHoras + 1;
+  }
+
+  console.log(Math.abs(diminuiHoras));
   console.log(diminuiMinutos);
 }
 
