@@ -9,13 +9,12 @@ function soma() {
   const horaDois = document.getElementById("h2").value;
   var somaHoras = Number(horaUm) + Number(horaDois);
 
-
   const minutoUm = document.getElementById("m1").value;
   const minutoDois = document.getElementById("m2").value;
   var somaMinutos = Number(minutoUm) + Number(minutoDois);
 
   while (somaMinutos >= 60) {
-    somaMinutos = somaMinutos-60;
+    somaMinutos = somaMinutos - 60;
     somaHoras = somaHoras + 1;
   }
 
@@ -27,14 +26,21 @@ function subtrai() {
   const horaUm = document.getElementById("h1").value;
   const horaDois = document.getElementById("h2").value;
   var diminuiHoras = Number(horaUm) - Number(horaDois);
+  diminuiHoras = Math.abs(diminuiHoras)
+  console.log(diminuiHoras)
 
   const minutoUm = document.getElementById("m1").value;
   const minutoDois = document.getElementById("m2").value;
   var diminuiMinutos = Number(minutoUm) - Number(minutoDois);
 
-  while (diminuiMinutos >= 60) {
-    diminuiMinutos = diminuiMinutos-60;
-    diminuiHoras = diminuiHoras + 1;
+  while (diminuiMinutos >= 60 || diminuiMinutos <= -1) {
+    if (diminuiMinutos <= -1) {
+      diminuiMinutos = diminuiMinutos * -1;
+      diminuiHoras = diminuiHoras - 1;
+    } else {
+      diminuiMinutos = diminuiMinutos - 60;
+      diminuiHoras = diminuiHoras + 1;
+    }
   }
 
   console.log(Math.abs(diminuiHoras));
