@@ -1,5 +1,6 @@
 import Head from "next/head";
 import Image from "next/image";
+import { useState } from "react";
 // import { Inter } from "next/font/google";
 
 // const inter = Inter({ subsets: ["latin"] });
@@ -23,31 +24,49 @@ function soma() {
 }
 
 function subtrai() {
-  const horaUm = document.getElementById("h1").value;
-  const horaDois = document.getElementById("h2").value;
-  var diminuiHoras = Number(horaUm) - Number(horaDois);
-  diminuiHoras = Math.abs(diminuiHoras)
-  console.log(diminuiHoras)
+  let horaUm = document.getElementById("h1").value;
+  let horaDois = document.getElementById("h2").value;
+  let minutoUm = document.getElementById("m1").value;
+  let minutoDois = document.getElementById("m2").value;
 
-  const minutoUm = document.getElementById("m1").value;
-  const minutoDois = document.getElementById("m2").value;
-  var diminuiMinutos = Number(minutoUm) - Number(minutoDois);
+  horaUm = Number(horaUm);
+  minutoUm = Number(minutoUm);
+  horaDois = Number(horaDois);
+  minutoDois = Number(minutoDois);
 
-  while (diminuiMinutos >= 60 || diminuiMinutos <= -1) {
-    if (diminuiMinutos <= -1) {
-      diminuiMinutos = diminuiMinutos * -1;
-      diminuiHoras = diminuiHoras - 1;
-    } else {
-      diminuiMinutos = diminuiMinutos - 60;
-      diminuiHoras = diminuiHoras + 1;
-    }
+  while (horaUm > 0) {
+    minutoUm += 60;
+    horaUm--;
   }
 
-  console.log(Math.abs(diminuiHoras));
-  console.log(diminuiMinutos);
+  while (horaDois > 0) {
+    horaDois--;
+    minutoDois += 60;
+  }
+
+  let rh = 0;
+  let rm = minutoUm - minutoDois;
+
+  if (minutoDois > minutoUm) {
+    rm = minutoDois - minutoUm;
+  }
+
+  while (rm > 59) {
+    rh++;
+    rm -= 60;
+  }
+
+  console.log(rh);
+  console.log(rm);
 }
 
 export default function Home() {
+  const [rh, setRh] = useState("");
+
+  const resultado = () => {
+    setRh(true);
+  };
+
   return (
     <>
       <Head>
@@ -57,7 +76,9 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <p className=" text-white">oii</p>
+        <p className="text-white" onChange={() => resultado()}>
+          oi{rh}
+        </p>
         <div className=" space-x-2 mb-2">
           <input id="h1" placeholder="hora" type="number"></input>
           <input id="m1" placeholder="minuto" type="number"></input>
