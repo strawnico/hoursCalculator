@@ -148,7 +148,6 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <span className=" top-10 right-36 absolute bg-purple-500 h-36 w-36 rounded-full"></span>
       </main>
     </>
   );
