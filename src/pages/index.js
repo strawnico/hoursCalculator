@@ -79,68 +79,76 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main>
-        <div className=" bg-[#151515] min-w-fit w-7 rounded-xl mx-auto">
-          <div>
-            <p className="text-white mb-10">{resultado}</p>
-          </div>
-          <div className=" text-center">
-            <div className="flex  space-x-2 mb-2">
-              <div>
-                <p className="text-purple-500">Hora</p>
-                <input
-                  id="h1"
-                  className=" w-1/3 bg-transparent text-white placeholder:text-white text-center"
-                  placeholder="00"
-                  type="number"
-                ></input>
+      <main className="relative flex h-screen">
+        <div className=" z-10 m-auto">
+          <div className=" bg-[#2D2D2D] min-w-fit max-w-xs h-[420px] rounded-3xl">
+            <div className="bg-[#2D2D2D] mb-10 shadow-3xl rounded-3xl h-28">
+              <p className="text-stone-400 pl-4 pt-4 font-medium text-sm">
+                CalculaHoras
+              </p>
+              <p className="text-white flex justify-end h-full pt-8 pr-10 font-medium text-lg">
+                {resultado}
+              </p>
+            </div>
+            <div className=" font-medium  text-base text-center">
+              <div className="flex gap-2 mb-2">
+                <div>
+                  <p className="text-purple-500">Hora</p>
+                  <input
+                    id="h1"
+                    className="border-b-[1px] border-gray-400 outline-none w-1/4 bg-transparent text-white placeholder:text-white text-center"
+                    placeholder="00"
+                    type="number"
+                  ></input>
+                </div>
+                <div>
+                  <p className="text-purple-500">Minuto</p>
+                  <input
+                    id="m1"
+                    className="border-b-[1px] border-gray-400 outline-none w-1/4 bg-transparent text-white placeholder:text-white text-center"
+                    placeholder="00"
+                    type="number"
+                  ></input>
+                </div>
               </div>
-              <div>
-                <p className="text-purple-500">Minuto</p>
-                <input
-                  id="m1"
-                  className="bg-transparent text-white placeholder:text-white"
-                  placeholder="00"
-                  type="number"
-                ></input>
+              <div className="flex space-x-1">
+                <div>
+                  <p className="text-purple-500">Hora</p>
+                  <input
+                    id="h2"
+                    className="border-b-[1px] border-gray-400 outline-none w-1/4 bg-transparent text-white placeholder:text-white text-center"
+                    placeholder="00"
+                    type="number"
+                  ></input>
+                </div>
+                <div>
+                  <p className="text-purple-500">Minuto</p>
+                  <input
+                    id="m2"
+                    className="border-b-[1px] border-gray-400 outline-none w-1/4 bg-transparent text-white placeholder:text-white text-center"
+                    placeholder="00"
+                    type="number"
+                  ></input>
+                </div>
               </div>
             </div>
-            <div className="flex space-x-2">
-              <div>
-                <p className="text-purple-500">Hora</p>
-                <input
-                  id="h2"
-                  className="bg-transparent text-white placeholder:text-white"
-                  placeholder="00"
-                  type="number"
-                ></input>
-              </div>
-              <div>
-                <p className="text-purple-500">Minuto</p>
-                <input
-                  id="m2"
-                  className="bg-transparent text-white placeholder:text-white"
-                  placeholder="00"
-                  type="number"
-                ></input>
-              </div>
+            <div className="px-14 gap-2 flex justify-center mr-0 mt-10">
+              <button
+                onClick={soma}
+                className=" ml-0 mx-auto bg-purple-500 rounded-md px-6 py-1 text-white text-sm"
+              >
+                Somar
+              </button>
+              <button
+                onClick={subtrai}
+                className=" mr-0 mx-auto bg-purple-500 rounded-md px-5 py-1 text-white text-sm"
+              >
+                Subtrair
+              </button>
             </div>
-          </div>
-          <div className="flex justify-center mr-0 mt-2 space-x-2 ">
-            <button
-              onClick={soma}
-              className="bg-purple-500 rounded-md px-5 py-1 text-white text-sm"
-            >
-              Somar
-            </button>
-            <button
-              onClick={subtrai}
-              className="bg-purple-500 rounded-md px-4 py-1 text-white text-sm"
-            >
-              Subtrair
-            </button>
           </div>
         </div>
+        <span className=" top-10 right-36 absolute bg-purple-500 h-36 w-36 rounded-full"></span>
       </main>
     </>
   );
