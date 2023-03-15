@@ -2,70 +2,74 @@ import Head from "next/head";
 import Image from "next/image";
 import { useState } from "react";
 // import { Inter } from "next/font/google";
-
 // const inter = Inter({ subsets: ["latin"] });
 
-function soma() {
-  const horaUm = document.getElementById("h1").value;
-  const horaDois = document.getElementById("h2").value;
-  var somaHoras = Number(horaUm) + Number(horaDois);
-
-  const minutoUm = document.getElementById("m1").value;
-  const minutoDois = document.getElementById("m2").value;
-  var somaMinutos = Number(minutoUm) + Number(minutoDois);
-
-  while (somaMinutos >= 60) {
-    somaMinutos = somaMinutos - 60;
-    somaHoras = somaHoras + 1;
-  }
-
-  console.log(somaHoras);
-  console.log(somaMinutos);
-}
-
-function subtrai() {
-  let horaUm = document.getElementById("h1").value;
-  let horaDois = document.getElementById("h2").value;
-  let minutoUm = document.getElementById("m1").value;
-  let minutoDois = document.getElementById("m2").value;
-
-  horaUm = Number(horaUm);
-  minutoUm = Number(minutoUm);
-  horaDois = Number(horaDois);
-  minutoDois = Number(minutoDois);
-
-  while (horaUm > 0) {
-    minutoUm += 60;
-    horaUm--;
-  }
-
-  while (horaDois > 0) {
-    horaDois--;
-    minutoDois += 60;
-  }
-
-  let rh = 0;
-  let rm = minutoUm - minutoDois;
-
-  if (minutoDois > minutoUm) {
-    rm = minutoDois - minutoUm;
-  }
-
-  while (rm > 59) {
-    rh++;
-    rm -= 60;
-  }
-
-  console.log(rh);
-  console.log(rm);
-}
-
 export default function Home() {
-  const [rh, setRh] = useState("");
+  const [resultado, setResultado] = useState("");
 
-  const resultado = () => {
-    setRh(true);
-  };
+  function soma() {
+    const horaUm = document.getElementById("h1").value;
+    const horaDois = document.getElementById("h2").value;
+    let somaHoras = Number(horaUm) + Number(horaDois);
+
+    const minutoUm = document.getElementById("m1").value;
+    const minutoDois = document.getElementById("m2").value;
+    let somaMinutos = Number(minutoUm) + Number(minutoDois);
+
+    while (somaMinutos >= 60) {
+      somaMinutos = somaMinutos - 60;
+      somaHoras = somaHoras + 1;
+    }
+
+    let resultado = somaHoras + "h e " + somaMinutos + "m";
+    console.log(resultado);
+
+    setResultado(resultado);
+
+    return resultado;
+  }
+
+  function subtrai() {
+    let horaUm = document.getElementById("h1").value;
+    let horaDois = document.getElementById("h2").value;
+    let minutoUm = document.getElementById("m1").value;
+    let minutoDois = document.getElementById("m2").value;
+
+    horaUm = Number(horaUm);
+    minutoUm = Number(minutoUm);
+    horaDois = Number(horaDois);
+    minutoDois = Number(minutoDois);
+
+    while (horaUm > 0) {
+      minutoUm += 60;
+      horaUm--;
+    }
+
+    while (horaDois > 0) {
+      horaDois--;
+      minutoDois += 60;
+    }
+
+    let rh = 0;
+    let rm = minutoUm - minutoDois;
+
+    if (minutoDois > minutoUm) {
+      rm = minutoDois - minutoUm;
+    }
+
+    while (rm > 59) {
+      rh++;
+      rm -= 60;
+    }
+
+    let resultado = rh + "h e " + rm + "m";
+
+    console.log(resultado);
+
+    setResultado(resultado);
+
+    return resultado;
+  }
 
   return (
     <>
@@ -76,24 +80,66 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <p className="text-white" onChange={() => resultado()}>
-          oi{rh}
-        </p>
-        <div className=" space-x-2 mb-2">
-          <input id="h1" placeholder="hora" type="number"></input>
-          <input id="m1" placeholder="minuto" type="number"></input>
-        </div>
-        <div className=" space-x-2">
-          <input id="h2" placeholder="hora" type="number"></input>
-          <input id="m2" placeholder="minuto" type="number"></input>
-        </div>
-        <div className=" mt-2  space-x-2 ">
-          <button onClick={soma} className=" bg-white">
-            Somar
-          </button>
-          <button onClick={subtrai} className=" bg-white">
-            Subtrair
-          </button>
+        <div className=" bg-[#151515] min-w-fit w-7 rounded-xl mx-auto">
+          <div>
+            <p className="text-white mb-10">{resultado}</p>
+          </div>
+          <div className=" text-center">
+            <div className="flex  space-x-2 mb-2">
+              <div>
+                <p className="text-purple-500">Hora</p>
+                <input
+                  id="h1"
+                  className=" w-1/3 bg-transparent text-white placeholder:text-white text-center"
+                  placeholder="00"
+                  type="number"
+                ></input>
+              </div>
+              <div>
+                <p className="text-purple-500">Minuto</p>
+                <input
+                  id="m1"
+                  className="bg-transparent text-white placeholder:text-white"
+                  placeholder="00"
+                  type="number"
+                ></input>
+              </div>
+            </div>
+            <div className="flex space-x-2">
+              <div>
+                <p className="text-purple-500">Hora</p>
+                <input
+                  id="h2"
+                  className="bg-transparent text-white placeholder:text-white"
+                  placeholder="00"
+                  type="number"
+                ></input>
+              </div>
+              <div>
+                <p className="text-purple-500">Minuto</p>
+                <input
+                  id="m2"
+                  className="bg-transparent text-white placeholder:text-white"
+                  placeholder="00"
+                  type="number"
+                ></input>
+              </div>
+            </div>
+          </div>
+          <div className="flex justify-center mr-0 mt-2 space-x-2 ">
+            <button
+              onClick={soma}
+              className="bg-purple-500 rounded-md px-5 py-1 text-white text-sm"
+            >
+              Somar
+            </button>
+            <button
+              onClick={subtrai}
+              className="bg-purple-500 rounded-md px-4 py-1 text-white text-sm"
+            >
+              Subtrair
+            </button>
+          </div>
         </div>
       </main>
     </>
